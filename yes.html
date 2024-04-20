@@ -1,18 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <link rel="stylesheet" href="./yes_style.css">
+<head>
+    <link rel="stylesheet" href="./yes_style.css">
+    <style>
+        .carousel-container {
+            position: relative;
+            width: 1000px; /* Adjust the width as needed */
+            height: 400px; /* Adjust the height as needed */
+            overflow: hidden;
+            margin-top: 20px; /* Adjust the spacing between header and carousel */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         
-    </head> 
-    <body>
-        <div class="container">
-            <div >
-                <h1 class = "header_text">Μπεμπαααα μου εσυυυυυυ</h1>
+        .carousel {
+            display: flex;
+            height: 100%;
+        }
+        
+        .carousel img {
+            width: 300px; /* Same as the container width */
+            height: 350px; /* Same as the container height */
+            object-fit: cover; /* Ensure the image covers the container */
+            display: none;
+        }
+        
+        .carousel img.active {
+            display: block;
+        }
+        
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border: none;
+            cursor: pointer;
+            font-size: 1.5em;
+            padding: 10px;
+            z-index: 999;
+        }
+        
+        .carousel-btn-prev {
+            left: 10px;
+        }
+        
+        .carousel-btn-next {
+            right: 10px;
+        }
+    </style>
+</head> 
+<body>
+    <div>
+        <h1 class="header_text">Και γω σε θέλω πολύ πριγκίπισσα μουυυ.</h1>
+        <h2 class="header_text">Αυτές για να με σκέφτεσαι</h2>
+        <div class="carousel-container">
+            <div class="carousel">
+                <img src="/img/434676610_1377585542949309_8025968447132471512_n.jpg" alt="Image 1" class="active">
+                <img src="/img/434997276_310406705230117_2465581308466621568_n.jpg" alt="Image 2">
+                <img src="/img/435018156_947220043547655_6083696790152851340_n.jpg" alt="Image 3">
+                <img src="/img/435094135_3759835444272583_2117368540114324442_n.jpg" alt="Image 4">
+                <img src="/img/435096987_2485384348314523_3880191845929267087_n.jpg" alt="Image 5">
+                <img src="/img/435315859_7834389299945113_4885376404079795364_n.jpg" alt="Image 6">
             </div>
-            <div class="gif_container">
-                <img src="https://media0.giphy.com/media/T86i6yDyOYz7J6dPhf/giphy.gif" alt="Cute animated illustration">
-            </div>
+            <button class="carousel-btn carousel-btn-prev" onclick="prevSlide()">&#10094;</button>
+            <button class="carousel-btn carousel-btn-next" onclick="nextSlide()">&#10095;</button>
         </div>
-       
-    </body> 
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.carousel img');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            showSlide(currentIndex);
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            showSlide(currentIndex);
+        }
+    </script>
+</body> 
 </html>
